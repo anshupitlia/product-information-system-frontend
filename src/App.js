@@ -1,35 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
 import React, { Component } from 'react';
+import './App.css';
+import Home from './Home';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import ProductList from './ProductList';
+import Product from "./Product";
 
 class App extends Component {
-  state = {
-    products: []
-  };
-
-  async componentDidMount() {
-    const response = await fetch('/products');
-    const body = await response.json();
-    this.setState({products: body});
-  }
-
   render() {
-    const {products} = this.state;
     return (
-        <div className="App">
-          <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <div className="App-intro">
-              <h2>Products</h2>
-              {products.map(product =>
-                  <div key={product.sku}>
-                    {product.title} ({product.price})
-                  </div>
-              )}
-            </div>
-          </header>
-        </div>
-    );
+        <Router>
+          <Switch>
+            <Route path='/' exact={true} component={Home}/>
+            <Route path='/products' exact={true} component={ProductList}/>
+            <Route path='/products/:sku' component={Product}/>
+          </Switch>
+        </Router>
+    )
   }
 }
 export default App;
