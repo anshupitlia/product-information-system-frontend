@@ -16,11 +16,7 @@ class ProductList extends Component {
             .then(data => this.setState({products: data}));
     }
     render() {
-        const {products, isLoading} = this.state;
-
-        if (isLoading) {
-            return <p>Loading...</p>;
-        }
+        const {products} = this.state;
 
         const productList = products.map(product => {
             return <tr key={product.sku}>
