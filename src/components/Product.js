@@ -20,7 +20,7 @@ class Product extends Component {
     }
 
     async componentDidMount() {
-            const product = await (await fetch(`/products/${this.props.match.params.sku}`)).json();
+            const product = await (await fetch(`/api/v1/products/${this.props.match.params.sku}`)).json();
             this.setState({product: product});
         }
         handleChange(event) {
@@ -35,7 +35,7 @@ class Product extends Component {
             event.preventDefault();
             const {product} = this.state;
 
-            await fetch('/products/' + product.sku , {
+            await fetch('/api/v1/products/' + product.sku , {
                 method: 'PUT',
                 headers: {
                     'Accept': 'application/json',
@@ -43,7 +43,7 @@ class Product extends Component {
                 },
                 body: JSON.stringify(product),
             });
-            this.props.history.push('/products');
+            this.props.history.push('/api/v1/products');
         }
 
         render() {
@@ -84,7 +84,7 @@ class Product extends Component {
                         </FormGroup>
                         <FormGroup>
                             <Button color="primary" type="submit">Update</Button>{' '}
-                            <Button color="secondary" tag={Link} to="/products">Cancel</Button>
+                            <Button color="secondary" tag={Link} to="/api/v1/products">Cancel</Button>
                         </FormGroup>
                     </Form>
                 </Container>

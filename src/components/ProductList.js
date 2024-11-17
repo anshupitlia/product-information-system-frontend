@@ -11,7 +11,7 @@ class ProductList extends Component {
     }
 
     componentDidMount() {
-        fetch('/products')
+        fetch('/api/v1/products')
             .then(response => response.json())
             .then(data => this.setState({products: data}));
     }
@@ -24,7 +24,7 @@ class ProductList extends Component {
                 <td>{product.price}</td>
                 <td>
                     <ButtonGroup>
-                        <Button size="sm" color="primary" tag={Link} to={"/products/" + product.sku}>View Details</Button>
+                        <Button size="sm" color="primary" tag={Link} to={"/api/v1/products/" + product.sku}>View Details</Button>
                     </ButtonGroup>
                 </td>
             </tr>
